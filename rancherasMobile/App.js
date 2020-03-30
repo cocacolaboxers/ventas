@@ -8,11 +8,12 @@ import {
 import Header from './components/header';
 import Login from './components/login';
 import Payment from './components/payment'
+import Route from './components/route'
 
 const App = () => {
   return (
     <View style = {styles.container}>
-      <Payment />
+      <Route />
     </View>
   )
 }

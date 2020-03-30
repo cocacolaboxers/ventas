@@ -5,12 +5,14 @@ import {
   View,
   Text,
 } from 'react-native';
-//import Login from './components/login';
-//import Payment from './components/payment'
+import Header from './components/header';
+import Login from './components/login';
+import Payment from './components/payment'
 
 const App = () => {
   return (
     <View style = {styles.container}>
+      <Payment />
     </View>
   )
 }
@@ -20,11 +22,6 @@ const styles = StyleSheet.create(
     container:{
       flex: 1,
       paddingTop: 40
-    },
-    logo: {
-      width: 100,
-      height: 100,
-      borderRadius: 50
     }
   }
 )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './header';
 import {
     StyleSheet,
     View,
@@ -9,12 +8,24 @@ import {
   } from 'react-native';
 import { white } from 'color-name';
 
-    export default class Payment extends Component{
+  export default class LoginForm extends Component{
       render(){
           return(
-              <View>
-                  <Header />
-                  <Text>This is the Payment screen</Text>
+              <View style = {styles.container}>
+                  <TextInput
+                  placeholder = 'Username'
+                  onSubmitEditing = {() => this.passwordInput.focus()}
+                  style = {styles.input}>
+                  </TextInput>
+                  <TextInput
+                  placeholder = 'Password'
+                  secureTextEntry
+                  style = {styles.input}
+                  ref = {(input) => this.passwordInput = input}>
+                  </TextInput>
+                  <TouchableOpacity style = {styles.buttonContainer}>
+                      <Text style = {styles.buttonText}>Log In</Text>
+                  </TouchableOpacity>
               </View>
           )
       }

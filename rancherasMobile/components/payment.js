@@ -6,15 +6,21 @@ import {
     TextInput,
     TouchableOpacity,
     Text,
+    Button
   } from 'react-native';
 import { white } from 'color-name';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
     export default class Payment extends Component{
       render(){
+          const { navigate } = this.props.navigation;
           return(
               <View>
                   <Header />
                   <Text>This is the Payment screen</Text>
+                  <Button title = "Back to Map"
+                  />
               </View>
           )
       }

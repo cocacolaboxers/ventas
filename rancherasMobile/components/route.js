@@ -8,6 +8,7 @@ import {
     Text,
   } from 'react-native';
 import { white } from 'color-name';
+import {Marker} from 'react-native-maps'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 
     export default class Route extends Component{
@@ -18,12 +19,18 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
                     region={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
+                        latitude: 18.478710,
+                        longitude: -69.936521,
                         latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                     }}
                     >
+                    <MapView.Marker coordinate = {{
+                        latitude: 18.478710,
+                        longitude: -69.936521
+                    }}
+                    title = {"Torre del Bosque"}
+                    description = {"A bad bitch lives here"}/>
                     </MapView>
               </View>
           )
@@ -35,7 +42,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
       ...StyleSheet.absoluteFillObject,
       height: 400,
       width: 400,
-      justifyContent: 'flex-end',
+      //justifyContent: 'flex-end',
       alignItems: 'center',
     },
     map: {

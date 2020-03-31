@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import Header from './header';
 import {
     StyleSheet,
     View,
-    TextInput,
-    TouchableOpacity,
-    Text,
-    Button
+    Text
   } from 'react-native';
 import { white } from 'color-name';
 
-    export default class Payment extends Component{
+    export default class Invoice extends Component{
       render(){
           const { navigate } = this.props.navigation;
           return(
               <View style = {styles.container}>
-                  <Text>This is the Payment screen</Text>
+                  <Text>This is the Invoice screen</Text>
               </View>
           )
       }

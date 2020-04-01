@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import {
   Image,
   StyleSheet,
@@ -17,6 +17,7 @@ import Clients from './components/clients'
 import ClientProfile from './components/clientProfile'
 import Invoice from './components/invoice'
 import Order from './components/order'
+import signOut from './components/signOut'
 
 const mapStack = createStackNavigator();
 const clientStack = createStackNavigator();
@@ -34,7 +35,13 @@ const mapStackNavigator = ({navigation}) => (
     }
   }}>
     <mapStack.Screen name = "Route" component = {Route} options = {{
-    }}/>
+      title: 'Client List',
+      headerLeft: () => (
+        <Button 
+                  title = "Menu"
+                  onPress = {() => navigation.openDrawer()} />
+      )
+      }}/>
   </mapStack.Navigator>
 )
 
@@ -65,12 +72,17 @@ const clientStackNavigator = ({navigation}) => (
 )
 
 const App = () => {
+  const [userToken, setUserToken] = React.useState(null)
+  
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName = "Client List">
+      {userToken ? (
+        <Drawer.Navigator initialRouteName = "Client List">
         <Drawer.Screen name = "Client List" component = {clientStackNavigator} />
         <Drawer.Screen name = "Route" component = {mapStackNavigator} />
+        <Drawer.Screen name = "Sign Out" component = {signOut} />
       </Drawer.Navigator>
+      ) : (<Login />)}
     </NavigationContainer>
   )
 }

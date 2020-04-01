@@ -12,7 +12,6 @@ import { white } from 'color-name';
             super()
         }
       render(){
-          const { navigate } = this.props.navigation;
           return(
               <View style = {styles.container}>
                   <Text>This is the Client list screen</Text>

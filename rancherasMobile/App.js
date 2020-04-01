@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Button
 } from 'react-native';
 
 import Login from './components/login';
@@ -17,8 +18,25 @@ import ClientProfile from './components/clientProfile'
 import Invoice from './components/invoice'
 import Order from './components/order'
 
+const mapStack = createStackNavigator();
 const clientStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+const mapStackNavigator = ({navigation}) => (
+  <mapStack.Navigator screenOptions = {{
+    headerStyle: {
+      backgroundColor: '#ff793f',
+    },
+    headerTintColor: '#fff',
+    headerTitleAlign: 'center',
+    headerTitleStyle :{
+      fontWeight: 'bold'
+    }
+  }}>
+    <mapStack.Screen name = "Route" component = {Route} options = {{
+    }}/>
+  </mapStack.Navigator>
+)
 
 const clientStackNavigator = ({navigation}) => (
   <clientStack.Navigator screenOptions = {{
@@ -32,7 +50,13 @@ const clientStackNavigator = ({navigation}) => (
     }
   }}>
     <clientStack.Screen name = "Clients" component = {Clients} options = {{
-      title: 'Client List'}}/>
+      title: 'Client List',
+      headerLeft: () => (
+        <Button 
+                  title = "Menu"
+                  onPress = {() => navigation.openDrawer()} />
+      )
+      }}/>
     <clientStack.Screen name = "Profile" component = {ClientProfile} />
     <clientStack.Screen name = "Last invoice" component = {Invoice} />
     <clientStack.Screen name = "Payment" component = {Payment} />
@@ -45,7 +69,7 @@ const App = () => {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName = "Client List">
         <Drawer.Screen name = "Client List" component = {clientStackNavigator} />
-        <Drawer.Screen name = "Route" component = {Route} />
+        <Drawer.Screen name = "Route" component = {mapStackNavigator} />
       </Drawer.Navigator>
     </NavigationContainer>
   )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './header';
 import {
     StyleSheet,
     View,
@@ -12,7 +11,6 @@ import { white } from 'color-name';
 
     export default class Payment extends Component{
       render(){
-          const { navigate } = this.props.navigation;
           return(
               <View style = {styles.container}>
                   <Text>This is the Payment screen</Text>

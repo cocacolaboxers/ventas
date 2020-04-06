@@ -72,7 +72,7 @@ const clientStackNavigator = ({navigation}) => (
 )
 
 const App = () => {
-  const [userToken, setUserToken] = React.useState(null)
+  const [userToken, setUserToken] = React.useState('diazcd ')
   
   return (
     <NavigationContainer>

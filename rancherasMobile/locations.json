@@ -1,0 +1,31 @@
+[
+    {
+        "name" : "Client A",
+        "coords" : {
+            "latitude" : "18.480259",
+            "longitude" : "-69.936011"
+        }
+    },
+    {
+        "name" : "Client B",
+        "coords" : {
+            "latitude" : "18.479099",
+            "longitude" : "-69.941082"
+        }
+    },
+    {
+        "name" : "Client C",
+        "coords" : {
+            "latitude" : "18.477393",
+            "longitude" : "-69.931529"
+        }
+    },
+    {
+        "name" : "Client D",
+        "coords" : {
+            "latitude" : "18.476047",
+            "longitude" : "-69.934988"
+        }
+    }
+    
+]

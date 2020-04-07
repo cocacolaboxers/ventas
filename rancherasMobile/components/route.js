@@ -9,13 +9,20 @@ import {request, PERMISSIONS} from 'react-native-permissions'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation'
 
+const hcLocations = require('../locations.json')
+
     export default class Route extends Component{
+      constructor(){
+        super();
+        this.state = {
+          initialPosition: null,
+          locations: hcLocations
+        }
+      }
 
       locateCurrentPosition = () => {
         Geolocation.getCurrentPosition(
           position => {
-            console.log(position)
-
             let initialPosition = {
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
@@ -31,7 +38,6 @@ import Geolocation from '@react-native-community/geolocation'
 
       requestLocationPermission = async () => {
         var response  = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
-        console.log(response)
 
         if(response === 'granted'){
           this.locateCurrentPosition()
@@ -40,25 +46,28 @@ import Geolocation from '@react-native-community/geolocation'
 
       componentDidMount(){
         this.requestLocationPermission()
+        
+        console.log('State: ' + this.state.initialPosition)
+        const {locations: [sampleLocation]} = this.state
+
+        this.setState({
+          destLatitude: sampleLocation.coords.latitude,
+          destLongitude: sampleLocation.coords.longitude
+        })
       }
 
       
       render(){
           return(
               <View style={styles.container}>
-                  {/* <MapView
+                  {<MapView
                     ref = {map => this._map = map}
                     provider={PROVIDER_GOOGLE}
                     showsUserLocation = {true}
                     style={styles.map}
                     initialRegion={this.state.initialPosition}
                     >
-                    <MapView.Marker draggable coordinate = {{
-                        latitude: 18.478710,
-                        longitude: -69.936521
-                    }}
-                    title = {"Torre del Bosque"}/>
-                    </MapView> */}
+                    </MapView>}
               </View>
           )
       }

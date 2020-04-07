@@ -35,7 +35,7 @@ const mapStackNavigator = ({navigation}) => (
     }
   }}>
     <mapStack.Screen name = "Route" component = {Route} options = {{
-      title: 'Client List',
+      title: 'Map',
       headerLeft: () => (
         <Button 
                   title = "Menu"

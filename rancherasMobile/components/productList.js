@@ -7,23 +7,28 @@ import {
   } from 'react-native';
 import { white } from 'color-name';
 import axios from 'axios';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
     export default class prodList extends Component{
         constructor(){
             super()
             this.state = {
-                givenName: ''
+                products: []
             }
         }
 
-          renderItem = () => {
-
+          renderItem = ({item}) => {
+              return(
+                    <TouchableOpacity style = {styles.item} onPress = {() => alert(item.UnitPrice)}>
+                        <Text>{item.Name}</Text>
+                    </TouchableOpacity>
+              )
           }
 
           componentDidMount() {
-            axios.get('http://localhost:3000/customers/1')
+            axios.get('http://localhost:3000/articles')
             .then(res => {
-                this.setState({givenName: res.data.GivenName})
+                this.setState({products: res.data.Item})
             })
             .catch(err => console.log(err))
           }
@@ -33,7 +38,10 @@ import axios from 'axios';
          render() {
             return (
                <View style = {styles.container}>
-                  <Text>{this.state.givenName}</Text>
+                  <FlatList
+                    data = {this.state.products}
+                    renderItem = {this.renderItem}
+                  />
                </View>
             )
          }
@@ -41,7 +49,12 @@ import axios from 'axios';
 
   const styles = StyleSheet.create ({
     container: {
-       padding: 10,
-       alignItems: 'center',
+       alignItems: 'flex-start',
+    },
+    item: {
+      marginTop: 3,
+      padding: 10,
+      backgroundColor: '#d9f9b1',
+      alignItems: 'flex-start',
     }
  })

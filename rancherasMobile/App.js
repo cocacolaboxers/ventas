@@ -18,10 +18,34 @@ import ClientProfile from './components/clientProfile'
 import Invoice from './components/invoice'
 import Order from './components/order'
 import signOut from './components/signOut'
+import productList from './components/productList'
 
 const mapStack = createStackNavigator();
 const clientStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const prodStack = createStackNavigator();
+
+const prodStackNavigator = ({navigation}) => (
+  <prodStack.Navigator screenOptions = {{
+    headerStyle: {
+      backgroundColor: '#ff793f',
+    },
+    headerTintColor: '#fff',
+    headerTitleAlign: 'center',
+    headerTitleStyle :{
+      fontWeight: 'bold'
+    }
+  }}>
+    <prodStack.Screen name = "Route" component = {productList} options = {{
+      title: 'Products',
+      headerLeft: () => (
+        <Button 
+                  title = "Menu"
+                  onPress = {() => navigation.openDrawer()} />
+      )
+      }}/>
+  </prodStack.Navigator>
+)
 
 const mapStackNavigator = ({navigation}) => (
   <mapStack.Navigator screenOptions = {{
@@ -80,6 +104,7 @@ const App = () => {
         <Drawer.Navigator initialRouteName = "Client List">
         <Drawer.Screen name = "Client List" component = {clientStackNavigator} />
         <Drawer.Screen name = "Route" component = {mapStackNavigator} />
+        <Drawer.Screen name = "Products" component = {prodStackNavigator} />
         <Drawer.Screen name = "Sign Out" component = {signOut} />
       </Drawer.Navigator>
       ) : (<Login />)}
